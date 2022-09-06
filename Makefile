@@ -9,7 +9,7 @@ help:
 
 docx: $(DST)
 $(DST): $(SRC) $(REF)
-	@cat $< | pandoc --reference-doc=$(REF) -t $(FMT) -o $@
+	@cat $< | pandoc --toc --reference-doc=$(REF) -t $(FMT) -o $@
 $(REF):
 	@pandoc --print-default-data-file reference.docx > $@
 
