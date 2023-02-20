@@ -1,5 +1,7 @@
 SRC = DRAFT
-FMT = docx
+FROM = markdown
+TO = docx
+FMT = $(TO)
 DST = $(SRC).$(FMT)
 REF = custom-reference.docx
 
@@ -9,7 +11,7 @@ help:
 
 docx: $(DST)
 $(DST): $(SRC) $(REF)
-	@cat $< | pandoc --toc --reference-doc=$(REF) -t $(FMT) -o $@
+	@cat $< | pandoc --toc --reference-doc=$(REF) -f $(FROM) -t $(TO) -o $@
 $(REF):
 	@pandoc --print-default-data-file reference.docx > $@
 
